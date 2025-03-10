@@ -1,38 +1,46 @@
 # LatteSite
 
-LatteSite is an SEO (Search Engine Optimization) focused,
-lightweight SSG (Static Site Generator) framework that 
-using OOP (Object-Oriented Programming) principles, written in Java.
+LatteSite is an [SEO (Search Engine Optimization)](https://en.wikipedia.org/wiki/Search_engine_optimization) focused,
+lightweight [SSG (Static Site Generator)](https://en.wikipedia.org/wiki/Static_site_generator) framework that 
+using [OOP (Object-Oriented Programming)](https://en.wikipedia.org/wiki/Object-oriented_programming) principles,
+written in [Java](https://en.wikipedia.org/wiki/Java_(programming_language)).
 
 
+## Why does this project exist
 
-# Why does this project exist
+I got tired of using multiple frameworks and languages just to create a static website that should
+achieve 100% [Google Lighthouse](https://en.wikipedia.org/wiki/Lighthouse_(software)) scores.
 
-In order to create a highly SEO focused, blazing fast, static websites using a single language as much as possible.
+So I started to create my own SSG using the most versatile language I know; Java.
 
-# This project is very young
-
-This is a newly created project, so it lacks a lot of structure and ways of working.
-
-These can be defined and established if the project grows in popularity.
+Today, this framework powers a lot of (personal and ecommerce business) websites.
 
 
-# Principles
+## This project is very young
+
+This is a newly created project, so it lacks a lot of common features, as well as a structure and ways of working.
+
+However, these can be defined and established if the project grows in popularity.
+
+
+## Principles
 
  - It should be a lightweight framework that can be extended with custom implementation
  - Keep the code simple with POJO (Plain Old Java Objects)
  - Object Oriented Programming style
+ - Beans, services, and utils using Dependency Injection patterns
  - A single exported JAR artifact
  
 
-# Architecture overview
+## Join the Development (Discord Server)
 
-The framework consists of these main pillars:
+- There is a very basic Discord server here you can join: https://discord.gg/tmcydvJdrq
 
 
-- LatteSite site
+## Architecture overview
 
-  If you want a more handheld 
+The framework currently consists of these main features:
+
 
 
 - HTML Elements & Custom Composite Components 
@@ -45,19 +53,24 @@ The framework consists of these main pillars:
 
   There is a default HTML generator included that you can use, extend or create your own
 
-- Pages and Page Generator
+- Sitemap Generator
+
+  There is also a default sitemap.xml generator included that you can use
+
+- Pages and Page Generator (NOT YET ADDED)
 
   There is a concept of a standard HTML Page that you can use, extend, or create your own
 
   There is also a default Page HTML generator included that you can use, extend or create your own
 
-- Sitemap Generator
+- i18n Localization
 
-  There is also a default sitemap.xml generator included that you can use
+  It can handle a website using multiple locales
 
 
 
-# What about CSS and JavaScript?
+
+## What about CSS and JavaScript?
 
 This project has no official way to generate this at the current
 (but it has the goal to include a CSS and JavaScript framework)
@@ -70,33 +83,33 @@ In the current examples, Node.JS LESS is used for CSS, and TypeScript+Browserify
 
 
 
-# Documentation / Getting started
+## Documentation / Getting started
 
 TBW
 
 
 
-# Releases & Distribution 
+## Releases & Distribution 
 
 - This project may generate a new JAR artifact release at any time, meaning there are no defined milestones.
-- You can find all releases in the `/distribution/` folder
+- You can find all releases in the `/releases/` folder
 - Versioning is based on [Date of Release](https://en.wikipedia.org/wiki/Software_versioning#Date_of_release)
   using the [ISO8601 Date Format](https://en.wikipedia.org/wiki/ISO_8601), for example `lattesite-20250101`
 
 
-# Development
+## Development
 
 The project owner controls the development of the project, including adding/rejecting contributions.
 
 There are no defined commit message conventions at this time.
 
 
-# Project Owner
+## Project Owner
 
 Christoffer (github.com/corgrath)
 
 
-# License - Apache 2.0 with No Competing Framework Clause
+## License - Apache 2.0 with No Competing Framework Clause
 
 Goal:
 

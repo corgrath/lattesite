@@ -1,4 +1,6 @@
 # IDEs
 /.idea/
+/lattesite.iml
 
-
+# Build outputs
+/out/
