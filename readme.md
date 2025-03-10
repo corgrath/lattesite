@@ -2,7 +2,7 @@
 
 LatteSite is an [SEO (Search Engine Optimization)](https://en.wikipedia.org/wiki/Search_engine_optimization) focused,
 lightweight [SSG (Static Site Generator)](https://en.wikipedia.org/wiki/Static_site_generator) framework that 
-using [OOP (Object-Oriented Programming)](https://en.wikipedia.org/wiki/Object-oriented_programming) principles,
+uses [OOP (Object-Oriented Programming)](https://en.wikipedia.org/wiki/Object-oriented_programming) principles,
 written in [Java](https://en.wikipedia.org/wiki/Java_(programming_language)).
 
 

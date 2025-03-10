@@ -1,5 +1,6 @@
 package lattesite.services;
 
+import lattesite.exceptions.LatteSiteException;
 import lattesite.localization.Locale;
 import lattesite.page.Page;
 import lattesite.settings.SiteSettings;
@@ -12,19 +13,35 @@ public class SitemapService {
     private final LinkService linkService;
     private final String indentation;
     private final String nl;
+    private final FileService fileService;
+    private final LogService logService;
 
-    public SitemapService(SiteSettings siteSettings, LinkService linkService) {
-        this(siteSettings, linkService, "    ", "\n");
+    public SitemapService(SiteSettings siteSettings, LogService logService, LinkService linkService, FileService fileService) {
+        this(siteSettings, logService, linkService, fileService, "    ", "\n");
     }
 
-    public SitemapService(SiteSettings siteSettings, LinkService linkService, String indentation, String nl) {
+    public SitemapService(SiteSettings siteSettings, LogService logService, LinkService linkService, FileService fileService, String indentation, String nl) {
         this.siteSettings = siteSettings;
+        this.logService = logService;
         this.linkService = linkService;
+        this.fileService = fileService;
         this.indentation = indentation;
         this.nl = nl;
     }
 
-    public String generate(List<Page> pages) {
+    public String generate(List<? extends Page> pages) throws LatteSiteException {
+
+        this.logService.log("Generating sitemap for " + pages.size() + " pages.");
+
+        List<Locale> locales = this.siteSettings.getLocales();
+
+        if (locales == null) {
+            throw new LatteSiteException("Cannot generate sitemap. List of locales in site settings is null.");
+        }
+
+        if (locales.isEmpty()) {
+            throw new LatteSiteException("Cannot generate sitemap. At least one Locale needs to be specified in site settings.");
+        }
 
         String xml = "";
 
@@ -38,8 +55,8 @@ public class SitemapService {
 
             xml += this.indentation + "<url>\n";
             xml += this.indentation.repeat(2) + "<loc>" + this.linkService.addDomain(this.siteSettings.getBaseURL(), page.getPathWithSlashes()) + "</loc>" + this.nl;
-            if (this.siteSettings.getLocales().size() >= 2) {
-                for (Locale locale : this.siteSettings.getLocales()) {
+            if (locales.size() >= 2) {
+                for (Locale locale : locales) {
                     xml += this.indentation.repeat(2) + "<xhtml:link rel=\"alternate\" hreflang=\"" + locale.getCode() + "\" href=\"" + this.linkService.addDomain(this.siteSettings.getBaseURL(), this.linkService.createLocalizedURL(locale, page.getPathWithSlashes())) + "\"/>" + this.nl;
                 }
             }
@@ -50,6 +67,12 @@ public class SitemapService {
 
         return xml;
 
+    }
+
+    public void generateToDisk(List<? extends Page> pages, String file) throws LatteSiteException {
+        this.logService.log("Will generating sitemap to \"" + file + "\".");
+        String xml = this.generate(pages);
+        this.fileService.writeFile(file, xml);
     }
 
 }
