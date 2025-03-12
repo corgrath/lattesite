@@ -1,7 +1,7 @@
 package lattesite.html.elements;
 
 import java.util.ArrayList;
-import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -21,8 +21,8 @@ public abstract class HTMLElement {
         this.tagName = tagName;
         this.voidElement = voidElement;
         this.children = new ArrayList<>();
-        this.attributes = new HashMap<>();
-        this.styles = new HashMap<>();
+        this.attributes = new LinkedHashMap<>();
+        this.styles = new LinkedHashMap<>();
         this.textContents = null;
         this.innerHTML = null;
         if (parent != null) {

@@ -1,4 +1,4 @@
-# LatteSite
+# LatteSite - a SSG (Static Site Generator) framework in Java
 
 LatteSite is an [SEO (Search Engine Optimization)](https://en.wikipedia.org/wiki/Search_engine_optimization) focused,
 lightweight [SSG (Static Site Generator)](https://en.wikipedia.org/wiki/Static_site_generator) framework that 
@@ -6,14 +6,24 @@ uses [OOP (Object-Oriented Programming)](https://en.wikipedia.org/wiki/Object-or
 written in [Java](https://en.wikipedia.org/wiki/Java_(programming_language)).
 
 
-## Why does this project exist
 
-I got tired of using multiple frameworks and languages just to create a static website that should
-achieve 100% [Google Lighthouse](https://en.wikipedia.org/wiki/Lighthouse_(software)) scores.
+## Why this project got created
 
-So I started to create my own SSG using the most versatile language I know; Java.
+I got tired of using multiple frameworks and languages just to create a blazing fast static website that
+should achieve 100% [Google Lighthouse](https://en.wikipedia.org/wiki/Lighthouse_(software)) scores.
 
-Today, this framework powers a lot of (personal and ecommerce business) websites.
+So I started to create my own SSG using the most popular and versatile backend language I knew; Java.
+
+
+
+## Site generation features
+
+ - Generate HTML based on POJO
+ - Sitemap generator
+ - Structured Data
+ - Maintains a public/ and static/ folder structure
+ - Localization support
+
 
 
 ## This project is very young
@@ -23,25 +33,20 @@ This is a newly created project, so it lacks a lot of common features, as well a
 However, these can be defined and established if the project grows in popularity.
 
 
+
 ## Principles
 
- - It should be a lightweight framework that can be extended with custom implementation
+ - Lightweight framework with not a lot of moving parts
+ - SOLID
  - Keep the code simple with POJO (Plain Old Java Objects)
  - Object Oriented Programming style
  - Beans, services, and utils using Dependency Injection patterns
  - A single exported JAR artifact
  
 
-## Join the Development (Discord Server)
-
-- There is a very basic Discord server here you can join: https://discord.gg/tmcydvJdrq
-
-
-## Architecture overview
+## Architectural overview
 
 The framework currently consists of these main features:
-
-
 
 - HTML Elements & Custom Composite Components 
 
@@ -68,24 +73,23 @@ The framework currently consists of these main features:
   It can handle a website using multiple locales
 
 
+## Join the development (Discord Server)
+
+- There is a very basic Discord server here you can join: https://discord.gg/tmcydvJdrq
+
 
 
 ## What about CSS and JavaScript?
 
-This project has no official way to generate this at the current
-(but it has the goal to include a CSS and JavaScript framework)
+At the current time, there is no official way to attach CSS or JavaScript.
 
-This means that for the time being you can use whatever CSS framework you want.
-
-In the current examples, Node.JS LESS is used for CSS, and TypeScript+Browserify is used for any front-end implementation.
+This means that for the time being you can use whatever frameworks you want.
 
 
 
+## Getting started
 
-
-## Documentation / Getting started
-
-TBW
+ - TBA
 
 
 
@@ -97,21 +101,22 @@ TBW
   using the [ISO8601 Date Format](https://en.wikipedia.org/wiki/ISO_8601), for example `lattesite-20250101`
 
 
-## Development
+
+## Development process
 
 The project owner controls the development of the project, including adding/rejecting contributions.
 
 There are no defined commit message conventions at this time.
 
 
+
 ## Project Owner
 
-Christoffer (github.com/corgrath)
+ - Christoffer (github.com/corgrath)
+
 
 
 ## License - Apache 2.0 with No Competing Framework Clause
-
-Goal:
 
 You should be able to use, fork, improve and contribute with changes, but you should not be allowed to
 repackage it nor redistribute it as a (commercial) competing framework.

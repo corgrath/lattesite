@@ -22,4 +22,8 @@ public class HTMLScriptElement extends HTMLElement {
         this.setAttribute("src", src);
     }
 
+    public void setType(String type) {
+        this.setAttribute("type", type);
+    }
+
 }
