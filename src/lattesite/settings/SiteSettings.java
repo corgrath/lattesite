@@ -8,19 +8,24 @@ import java.util.List;
 
 public class SiteSettings {
 
+    private final String siteName;
     private final String baseURL;
     private final List<Locale> locales;
     private String publicFolder;
     private String staticFolder;
+    private String brandColor;
 
     public SiteSettings(
+            String siteName,
             String baseURL,
             List<Locale> locales
     ) {
+        this.siteName = siteName;
         this.baseURL = baseURL;
         this.locales = locales;
         this.publicFolder = "public/";
         this.staticFolder = "static/";
+        this.brandColor = null;
     }
 
     public String getBaseURL() {
@@ -51,6 +56,18 @@ public class SiteSettings {
             throw new LatteSiteException("Static folder cannot be empty.");
         }
         this.staticFolder = staticFolder;
+    }
+
+    public String getSiteName() {
+        return this.siteName;
+    }
+
+    public void setBrandColor(String brandColor) {
+        this.brandColor = brandColor;
+    }
+
+    public String getBrandColor() {
+        return this.brandColor;
     }
 
 }

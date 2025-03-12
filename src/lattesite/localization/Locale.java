@@ -23,4 +23,14 @@ public class Locale {
         return this.code;
     }
 
+    /**
+     * Returns the code;
+     *
+     * @return - Returns the code.
+     */
+    @Override
+    public String toString() {
+        return this.code;
+    }
+
 }

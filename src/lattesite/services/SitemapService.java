@@ -54,10 +54,10 @@ public class SitemapService {
             }
 
             xml += this.indentation + "<url>\n";
-            xml += this.indentation.repeat(2) + "<loc>" + this.linkService.addDomain(this.siteSettings.getBaseURL(), page.getPathWithSlashes()) + "</loc>" + this.nl;
+            xml += this.indentation.repeat(2) + "<loc>" + this.linkService.addBaseURL(this.siteSettings.getBaseURL(), page.getPathWithSlashes()) + "</loc>" + this.nl;
             if (locales.size() >= 2) {
                 for (Locale locale : locales) {
-                    xml += this.indentation.repeat(2) + "<xhtml:link rel=\"alternate\" hreflang=\"" + locale.getCode() + "\" href=\"" + this.linkService.addDomain(this.siteSettings.getBaseURL(), this.linkService.createLocalizedURL(locale, page.getPathWithSlashes())) + "\"/>" + this.nl;
+                    xml += this.indentation.repeat(2) + "<xhtml:link rel=\"alternate\" hreflang=\"" + locale.getCode() + "\" href=\"" + this.linkService.addBaseURL(this.siteSettings.getBaseURL(), this.linkService.createLocalizedURL(locale, page.getPathWithSlashes())) + "\"/>" + this.nl;
                 }
             }
             xml += this.indentation + "</url>" + this.nl;
