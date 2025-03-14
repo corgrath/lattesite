@@ -1,6 +1,5 @@
 package lattesite.services;
 
-import lattesite.exceptions.LatteSiteException;
 import lattesite.structureddata.schemas.*;
 import lattesite.utils.StringUtil;
 
@@ -198,7 +197,7 @@ public class StructuredDataService {
         data.put("sameAs", sd.getSameAs());
         data.put("knowsAbout", sd.getKnowsAbout());
         data.put("jobTitle", sd.getJobTitle());
-        data.put("gender", sd.isFemale() ? "https://schema.org/Female" : "https://schema.org/Male");
+        data.put("gender", sd.getGender().getValue());
         data.put("givenName", sd.getGivenName());
         data.put("familyName", sd.getFamilyName());
 
@@ -325,14 +324,15 @@ public class StructuredDataService {
     private Map<String, Object> toMap(StructuredDataOffer sd) {
         Map<String, Object> data = new LinkedHashMap<>();
         data.put("@context", "https://schema.org/");
-        data.put("@type", "Offer,");
+        data.put("@type", "Offer");
 
         data.put("url", sd.getURL());
+
         data.put("priceCurrency", sd.getPriceCurrency());
         data.put("price", sd.getPrice());
         data.put("priceValidUntil", sd.getPriceValidUntil());
-        data.put("availability", sd.getAvailability());
-        data.put("itemCondition", sd.getItemCondition());
+        data.put("availability", sd.getAvailability().getValue());
+        data.put("itemCondition", sd.getItemCondition().getValue());
         data.put("seller", toMap(sd.getSeller()));
         data.put("shippingDetails", toMap(sd.getShippingDetails()));
         data.put("hasMerchantReturnPolicy", toMap(sd.getHasMerchantReturnPolicy()));
@@ -407,43 +407,43 @@ public class StructuredDataService {
         return data;
     }
 
-    public String toJSON(StructuredDataArticle structuredDataArticle) throws LatteSiteException {
+    public String toJSON(StructuredDataArticle structuredDataArticle) throws Exception {
         return toJSON(0, toMap(structuredDataArticle));
     }
 
-    public String toJSON(StructuredDataFAQPage structuredDataFAQPage) throws LatteSiteException {
+    public String toJSON(StructuredDataFAQPage structuredDataFAQPage) throws Exception {
         return toJSON(0, toMap(structuredDataFAQPage));
     }
 
-    public String toJSON(StructuredDataProduct structuredDataProduct) throws LatteSiteException {
+    public String toJSON(StructuredDataProduct structuredDataProduct) throws Exception {
         return toJSON(0, toMap(structuredDataProduct));
     }
 
-    public String toJSON(StructuredDataPerson structuredDataPerson) throws LatteSiteException {
+    public String toJSON(StructuredDataPerson structuredDataPerson) throws Exception {
         return toJSON(0, toMap(structuredDataPerson));
     }
 
-    public String toJSON(StructuredDataBreadcrumbList structuredDataBreadcrumbList) throws LatteSiteException {
+    public String toJSON(StructuredDataBreadcrumbList structuredDataBreadcrumbList) throws Exception {
         return toJSON(0, toMap(structuredDataBreadcrumbList));
     }
 
-    public String toJSON(StructuredDataWebPage structuredDataWebPage) throws LatteSiteException {
+    public String toJSON(StructuredDataWebPage structuredDataWebPage) throws Exception {
         return toJSON(0, toMap(structuredDataWebPage));
     }
 
-    public String toJSON(StructuredDataOrganization sdOrganization) throws LatteSiteException {
+    public String toJSON(StructuredDataOrganization sdOrganization) throws Exception {
         return toJSON(0, toMap(sdOrganization));
     }
 
-    public String toJSON(StructuredDataWebSite sdWebSite) throws LatteSiteException {
+    public String toJSON(StructuredDataWebSite sdWebSite) throws Exception {
         return toJSON(0, toMap(sdWebSite));
     }
 
-    public String toJSON(StructuredDataAboutPage sdAboutPage) throws LatteSiteException {
+    public String toJSON(StructuredDataAboutPage sdAboutPage) throws Exception {
         return toJSON(0, toMap(sdAboutPage));
     }
 
-    private String toJSON(int level, Map<String, Object> data) throws LatteSiteException {
+    private String toJSON(int level, Map<String, Object> data) throws Exception {
 
         String json = "";
 
@@ -497,7 +497,7 @@ public class StructuredDataService {
                     } else if (listItem instanceof String) {
                         json += "\"" + formatJSONValue((String) listItem) + "\"";
                     } else {
-                        throw new LatteSiteException("Unknown type \"" + value.getClass().getSimpleName() + "\" for key \"" + key + "\" while converting to JSON: " + value);
+                        throw new Exception("Unknown type \"" + value.getClass().getSimpleName() + "\" for key \"" + key + "\" while converting to JSON: " + value);
                     }
 
                     if (k < array.size() - 1) {
@@ -516,7 +516,7 @@ public class StructuredDataService {
 
             } else {
 
-                throw new LatteSiteException("Unknown type \"" + value.getClass().getSimpleName() + "\" for key \"" + key + "\" while converting to JSON: " + value);
+                throw new Exception("Unknown type \"" + value.getClass().getSimpleName() + "\" for key \"" + key + "\" while converting to JSON: " + value);
 
             }
 

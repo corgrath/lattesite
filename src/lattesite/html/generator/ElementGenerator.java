@@ -1,6 +1,5 @@
 package lattesite.html.generator;
 
-import lattesite.exceptions.LatteSiteException;
 import lattesite.html.elements.HTMLElement;
 import lattesite.html.elements.HTMLRootElement;
 
@@ -20,11 +19,11 @@ public class ElementGenerator {
         this.nl = nl;
     }
 
-    public String generate(HTMLRootElement root) throws LatteSiteException {
+    public String generate(HTMLRootElement root) throws Exception {
         return this.generate(0, root);
     }
 
-    private String generate(int level, HTMLElement element) throws LatteSiteException {
+    private String generate(int level, HTMLElement element) throws Exception {
 
         String html = "";
 
@@ -78,10 +77,10 @@ public class ElementGenerator {
 
     }
 
-    private String htmlEncode(String s) throws LatteSiteException {
+    private String htmlEncode(String s) throws Exception {
 
         if (s == null) {
-            throw new LatteSiteException("Cannot encode HTML as the given String value was null.");
+            throw new Exception("Cannot encode HTML as the given String value was null.");
         }
 
         s = s.replace("&", "&amp;");

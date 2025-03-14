@@ -1,6 +1,5 @@
 package lattesite.services;
 
-import lattesite.exceptions.LatteSiteException;
 import lattesite.localization.Locale;
 import lattesite.page.Page;
 import lattesite.settings.SiteSettings;
@@ -29,18 +28,18 @@ public class SitemapService {
         this.nl = nl;
     }
 
-    public String generate(List<? extends Page> pages) throws LatteSiteException {
+    public String generate(List<? extends Page> pages) throws Exception {
 
         this.logService.log("Generating sitemap for " + pages.size() + " pages.");
 
         List<Locale> locales = this.siteSettings.getLocales();
 
         if (locales == null) {
-            throw new LatteSiteException("Cannot generate sitemap. List of locales in site settings is null.");
+            throw new Exception("Cannot generate sitemap. List of locales in site settings is null.");
         }
 
         if (locales.isEmpty()) {
-            throw new LatteSiteException("Cannot generate sitemap. At least one Locale needs to be specified in site settings.");
+            throw new Exception("Cannot generate sitemap. At least one Locale needs to be specified in site settings.");
         }
 
         String xml = "";
@@ -69,7 +68,7 @@ public class SitemapService {
 
     }
 
-    public void generateToDisk(List<? extends Page> pages, String file) throws LatteSiteException {
+    public void generateToDisk(List<? extends Page> pages, String file) throws Exception {
         this.logService.log("Will generating sitemap to \"" + file + "\".");
         String xml = this.generate(pages);
         this.fileService.writeFile(file, xml);

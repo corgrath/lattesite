@@ -1,6 +1,5 @@
 package lattesite.services;
 
-import lattesite.exceptions.LatteSiteException;
 import lattesite.html.elements.HTMLBodyElement;
 import lattesite.html.elements.HTMLHeadElement;
 import lattesite.html.elements.HTMLRootElement;
@@ -39,7 +38,7 @@ public class PageGeneratorService {
         this.nl = nl;
     }
 
-    public void generate(List<Page> pages) throws LatteSiteException {
+    public void generate(List<? extends Page> pages) throws Exception {
         this.logService.log("Generating " + pages.size() + " pages over " + this.settings.getLocales().size() + " locales.");
         for (Locale locale : this.settings.getLocales()) {
             for (Page page : pages) {
@@ -48,7 +47,7 @@ public class PageGeneratorService {
         }
     }
 
-    public void generate(Locale locale, Page page) throws LatteSiteException {
+    public void generate(Locale locale, Page page) throws Exception {
 
         this.logService.log("Generating page " + page.getClass().getSimpleName() + " for locale " + locale + ".");
 

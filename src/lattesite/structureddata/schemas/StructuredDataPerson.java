@@ -1,11 +1,13 @@
 package lattesite.structureddata.schemas;
 
+import lattesite.structureddata.enumeration.GenderType;
+
 public class StructuredDataPerson {
 
     private final String name;
     private final String description;
     private final String image;
-    private final boolean female;
+    private final GenderType gender;
     private final String url;
     private final String jobTitle;
     private final String knowsAbout;
@@ -18,7 +20,7 @@ public class StructuredDataPerson {
             String name,
             String description,
             String image,
-            boolean female,
+            GenderType gender,
             String url,
             String jobTitle,
             String knowsAbout,
@@ -29,7 +31,7 @@ public class StructuredDataPerson {
         this.name = name;
         this.description = description;
         this.image = image;
-        this.female = female;
+        this.gender = gender;
         this.url = url;
         this.jobTitle = jobTitle;
         this.knowsAbout = knowsAbout;
@@ -67,8 +69,8 @@ public class StructuredDataPerson {
         return this.jobTitle;
     }
 
-    public boolean isFemale() {
-        return this.female;
+    public GenderType getGender() {
+        return this.gender;
     }
 
     public String getGivenName() {

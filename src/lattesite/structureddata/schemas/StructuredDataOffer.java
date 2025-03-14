@@ -1,13 +1,16 @@
 package lattesite.structureddata.schemas;
 
+import lattesite.structureddata.enumeration.ItemAvailability;
+import lattesite.structureddata.enumeration.OfferItemCondition;
+
 public class StructuredDataOffer {
 
     private final String url;
     private final String priceCurrency;
     private final int price;
     private final String priceValidUntil;
-    private final String availability;
-    private final String itemCondition;
+    private final ItemAvailability availability;
+    private final OfferItemCondition itemCondition;
     private final StructuredDataOrganization seller;
     private final StructuredDataOfferShippingDetails shippingDetails;
     private final StructuredDataMerchantReturnPolicy hasMerchantReturnPolicy;
@@ -17,8 +20,8 @@ public class StructuredDataOffer {
             String priceCurrency,
             int price,
             String priceValidUntil,
-            String availability,
-            String itemCondition,
+            ItemAvailability availability,
+            OfferItemCondition itemCondition,
             StructuredDataOrganization seller,
             StructuredDataOfferShippingDetails shippingDetails,
             StructuredDataMerchantReturnPolicy hasMerchantReturnPolicy
@@ -50,11 +53,11 @@ public class StructuredDataOffer {
         return priceValidUntil;
     }
 
-    public String getAvailability() {
+    public ItemAvailability getAvailability() {
         return availability;
     }
 
-    public String getItemCondition() {
+    public OfferItemCondition getItemCondition() {
         return itemCondition;
     }
 

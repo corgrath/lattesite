@@ -1,8 +1,8 @@
 package lattesite;
 
-import lattesite.exceptions.LatteSiteException;
 import lattesite.page.Page;
 import lattesite.services.FileService;
+import lattesite.services.PageGeneratorService;
 import lattesite.services.SitemapService;
 import lattesite.services.StaticWebServerServiceInterface;
 import lattesite.settings.SiteSettings;
@@ -13,22 +13,25 @@ public class LatteSite {
 
     private final SiteSettings siteSettings;
     private final FileService fileService;
+    private final PageGeneratorService pageGeneratorService;
     private final SitemapService sitemapService;
     private final StaticWebServerServiceInterface webServerService;
 
     public LatteSite(
             SiteSettings siteSettings,
             FileService fileService,
+            PageGeneratorService pageGeneratorService,
             SitemapService sitemapService,
             StaticWebServerServiceInterface webServerService
     ) {
         this.siteSettings = siteSettings;
         this.fileService = fileService;
+        this.pageGeneratorService = pageGeneratorService;
         this.sitemapService = sitemapService;
         this.webServerService = webServerService;
     }
 
-    public void generate(List<? extends Page> pages) throws LatteSiteException {
+    public void generate(List<? extends Page> pages) throws Exception {
 
         // Clear the public folder
         this.fileService.deleteDirectory(siteSettings.getPublicFolder());
@@ -36,12 +39,15 @@ public class LatteSite {
         // Copy over the static folder to the public
         this.fileService.copyDirectory(siteSettings.getStaticFolder(), siteSettings.getPublicFolder());
 
+        // Generate pages
+        this.pageGeneratorService.generate(pages);
+
         // Generate the sitemap
         this.sitemapService.generateToDisk(pages, this.siteSettings.getPublicFolder() + "sitemap.xml");
 
     }
 
-    public void serve(int port) throws LatteSiteException {
+    public void serve(int port) throws Exception {
         this.webServerService.serve(port);
     }
 

@@ -3,7 +3,6 @@ package lattesite.services;
 import com.sun.net.httpserver.HttpExchange;
 import com.sun.net.httpserver.HttpHandler;
 import com.sun.net.httpserver.HttpServer;
-import lattesite.exceptions.LatteSiteException;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -25,7 +24,7 @@ public class StaticWebServerService implements StaticWebServerServiceInterface {
     }
 
     @Override
-    public void serve(int port) throws LatteSiteException {
+    public void serve(int port) throws Exception {
         try {
             this.server = HttpServer.create(new InetSocketAddress(port), 0);
             this.server.createContext("/", new StaticFileHandler(publicFolder));
@@ -34,7 +33,7 @@ public class StaticWebServerService implements StaticWebServerServiceInterface {
 
             this.logService.log("Static Server started on http://localhost:" + port + "/");
         } catch (IOException exception) {
-            throw new LatteSiteException(exception);
+            throw new Exception(exception);
         }
     }
 
