@@ -1,5 +1,7 @@
 package lattesite.html.elements;
 
+import lattesite.css.StyleClass;
+
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -7,8 +9,10 @@ import java.util.Map;
 
 public abstract class HTMLElement {
 
+    private final HTMLElement parent;
     private final String tagName;
     private final boolean voidElement;
+    private boolean codeBlock;
     private final List<HTMLElement> children;
 
     private final Map<String, String> attributes;
@@ -18,8 +22,14 @@ public abstract class HTMLElement {
 //    private final List<String> classes;
 
     public HTMLElement(HTMLElement parent, String tagName, boolean voidElement) {
+        this(parent, tagName, voidElement, false);
+    }
+
+    public HTMLElement(HTMLElement parent, String tagName, boolean voidElement, boolean codeBlock) {
+        this.parent = parent;
         this.tagName = tagName;
         this.voidElement = voidElement;
+        this.codeBlock = codeBlock;
         this.children = new ArrayList<>();
         this.attributes = new LinkedHashMap<>();
         this.styles = new LinkedHashMap<>();
@@ -43,6 +53,10 @@ public abstract class HTMLElement {
 
     public void addClass(String s) {
         this.appendToProperty("class", s);
+    }
+
+    public void addClass(StyleClass sc) {
+        this.addClass(sc.getClassName());
     }
 
     private void appendToProperty(String key, String s) {
@@ -73,6 +87,10 @@ public abstract class HTMLElement {
 
     public Map<String, String> getAttributes() {
         return this.attributes;
+    }
+
+    public boolean isCodeBlock() {
+        return this.codeBlock;
     }
 
     public Map<String, String> getStyles() {
@@ -115,6 +133,10 @@ public abstract class HTMLElement {
 
     private String getAttribute(String key) {
         return this.attributes.get(key);
+    }
+
+    protected void setCodeBlock(boolean codeBlock) {
+        this.codeBlock = codeBlock;
     }
 
 }

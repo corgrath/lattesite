@@ -59,7 +59,10 @@ public class ElementGenerator {
 
         if (element.getInnerHTML() != null) {
             html += this.nl;
-            html += indentation.repeat(level + 1) + element.getInnerHTML().trim() + nl;
+            if (!element.isCodeBlock()) {
+                html += indentation.repeat(level + 1);
+            }
+            html += element.getInnerHTML().trim() + nl;
             html += indentation.repeat(level);
         }
 

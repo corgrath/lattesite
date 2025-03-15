@@ -47,6 +47,12 @@ public class LatteSite {
 
     }
 
+    /**
+     * Starts a local static webserver on the given port.
+     *
+     * @param port - The port the server should bind to.
+     */
+
     public void serve(int port) throws Exception {
         this.webServerService.serve(port);
     }

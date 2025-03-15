@@ -17,6 +17,14 @@ public class SiteSettings {
     public SiteSettings(
             String siteName,
             String baseURL,
+            Locale locale
+    ) {
+        this(siteName, baseURL, List.of(locale));
+    }
+
+    public SiteSettings(
+            String siteName,
+            String baseURL,
             List<Locale> locales
     ) {
         this.siteName = siteName;

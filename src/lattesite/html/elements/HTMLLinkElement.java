@@ -3,7 +3,7 @@ package lattesite.html.elements;
 public class HTMLLinkElement extends HTMLElement {
 
     /**
-     * Creates a <link> element
+     * Creates a link element
      *
      * @param parent - Parent elent
      * @param rel    - Relationship
@@ -18,7 +18,7 @@ public class HTMLLinkElement extends HTMLElement {
     }
 
     /**
-     * Creates a <link> element
+     * Creates a link element
      *
      * @param parent - Parent elent
      * @param rel    - Relationship

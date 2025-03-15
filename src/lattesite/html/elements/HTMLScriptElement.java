@@ -18,6 +18,12 @@ public class HTMLScriptElement extends HTMLElement {
         }
     }
 
+    @Override
+    public final void setInnerHTML(String innerHTML) {
+        super.setInnerHTML(innerHTML);
+        super.setCodeBlock(true);
+    }
+
     public void setSource(String src) {
         this.setAttribute("src", src);
     }
