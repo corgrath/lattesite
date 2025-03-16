@@ -1,6 +1,6 @@
 package lattesite.html.elements;
 
-import lattesite.css.StyleClass;
+import lattesite.css.StyleBlock;
 
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
@@ -55,7 +55,7 @@ public abstract class HTMLElement {
         this.appendToProperty("class", s);
     }
 
-    public void addClass(StyleClass sc) {
+    public void addClass(StyleBlock sc) {
         this.addClass(sc.getClassName());
     }
 

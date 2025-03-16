@@ -5,52 +5,42 @@ import java.util.Set;
 
 public class StyleContext {
 
-    //    private final Set<String> styles = new LinkedHashSet<>();
-    private final Set<StyleClass> classes = new LinkedHashSet<>();
+    private final Set<StyleBlock> blocks = new LinkedHashSet<>();
 
-//    public void addStyle(String css) {
-//        css = css.trim();
-//        this.styles.add(css);
-//    }
+    public StyleBlock addClass(String className, OnCreation onCreation) {
+        return this.addBlock("." + className, onCreation);
+    }
 
-//    public Set<String> getStyles() {
-//        return Collections.unmodifiableSet(styles);
-//    }
-//
-//    public boolean isEmpty() {
-//        return this.styles.isEmpty();
-//    }
-
-    public StyleClass createClass(String className, OnCreation onCreation) {
-        StyleClass sc = new StyleClass(className);
+    public StyleBlock addBlock(String className, OnCreation onCreation) {
+        StyleBlock sc = new StyleBlock(className);
 
         onCreation.initialize(sc);
 
-        this.classes.add(sc);
+        this.blocks.add(sc);
         return sc;
     }
 
-    public StyleClass createSubClass(StyleClass parent, String className, OnCreation onCreation) {
-        StyleClass sc = parent.createSubClass(className);
+    public StyleBlock addSubBlock(StyleBlock parent, String className, OnCreation onCreation) {
+        StyleBlock sc = new StyleBlock(parent.getClassName() + className);
 
         onCreation.initialize(sc);
 
-        this.classes.add(sc);
+        this.blocks.add(sc);
         return sc;
     }
 
-    public StyleClass addClass(StyleClass c) {
-        this.classes.add(c);
+    public StyleBlock addBlock(StyleBlock c) {
+        this.blocks.add(c);
         return c;
     }
 
-    public Set<StyleClass> getClasses() {
-        return this.classes;
+    public Set<StyleBlock> getBlocks() {
+        return this.blocks;
     }
 
     public interface OnCreation {
 
-        void initialize(StyleClass sc);
+        void initialize(StyleBlock sc);
 
     }
 }

@@ -1,9 +1,9 @@
 package lattesite.services;
 
-import lattesite.css.StyleClass;
+import lattesite.css.StyleBlock;
 
 public interface StyleGeneratorServiceInterface {
 
-    String toCSS(StyleClass sc);
+    String toCSS(StyleBlock sc);
 
 }

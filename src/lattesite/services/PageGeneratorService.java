@@ -1,6 +1,6 @@
 package lattesite.services;
 
-import lattesite.css.StyleClass;
+import lattesite.css.StyleBlock;
 import lattesite.css.StyleContext;
 import lattesite.html.elements.HTMLBodyElement;
 import lattesite.html.elements.HTMLHeadElement;
@@ -11,7 +11,7 @@ import lattesite.localization.Locale;
 import lattesite.page.Page;
 import lattesite.settings.SiteSettings;
 
-import java.util.HashSet;
+import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -76,9 +76,9 @@ public class PageGeneratorService {
 
         // Add any styles that might have gotten added
 
-        if (!styleContext.getClasses().isEmpty()) {
-            Set<String> styles = new HashSet<>();
-            for (StyleClass sc : styleContext.getClasses()) {
+        if (!styleContext.getBlocks().isEmpty()) {
+            Set<String> styles = new LinkedHashSet<>();
+            for (StyleBlock sc : styleContext.getBlocks()) {
                 styles.add(this.styleGeneratorService.toCSS(sc));
             }
             String css = String.join("", styles);
